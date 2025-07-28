@@ -12,12 +12,14 @@ enum ImageViewType {
     case detail
     case banner
     case cart
+    case addonCart
 }
 
 class ImageView: UIImageView {
     
     init(type: ImageViewType) {
         super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
         commonInit(type)
     }
     
@@ -31,8 +33,8 @@ class ImageView: UIImageView {
         case .product:
             image = UIImage(named: "margarita")
             contentMode = .scaleAspectFit
-            heightAnchor.constraint(equalToConstant: 130).isActive = true
-            widthAnchor.constraint(equalToConstant: 130).isActive = true
+            heightAnchor.constraint(equalToConstant: 150).isActive = true
+            widthAnchor.constraint(equalToConstant: 150).isActive = true
             
         case .detail:
             image = UIImage(named: "margarita")
@@ -51,6 +53,11 @@ class ImageView: UIImageView {
             contentMode = .scaleAspectFit
             heightAnchor.constraint(equalToConstant: 72).isActive = true
             widthAnchor.constraint(equalToConstant: 72).isActive = true
+        case .addonCart:
+            image = UIImage(named: "roll_pineapple_padding")
+            contentMode = .scaleAspectFit
+            heightAnchor.constraint(equalToConstant: 120).isActive = true
+            widthAnchor.constraint(equalToConstant: 120).isActive = true
         }
     }
 }

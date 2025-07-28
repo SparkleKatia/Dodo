@@ -9,13 +9,16 @@ import UIKit
 
 enum StackViewType {
     case productCell
+    case cartGift
+    case cartAddonCell
+    case info
 }
 
 class StackView: UIStackView {
     
     init(type: StackViewType) {
         super.init(frame: .zero)
-        
+        translatesAutoresizingMaskIntoConstraints = false
         commonInit(type)
     }
     
@@ -27,6 +30,34 @@ class StackView: UIStackView {
             spacing = Layout.offset6
             distribution = .fill
             alignment = .leading
+            
+            directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
+            isLayoutMarginsRelativeArrangement = true
+            backgroundColor = .systemBackground
+        case .cartAddonCell:
+            axis = .vertical
+            spacing = Layout.offset6
+            distribution = .fill
+            alignment = .leading
+            
+            directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
+            isLayoutMarginsRelativeArrangement = true
+            backgroundColor = .systemBackground
+        case .cartGift:
+            axis = .horizontal
+            spacing = Layout.offset6
+            distribution = .fill
+            alignment = .leading
+            
+            directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)
+            isLayoutMarginsRelativeArrangement = true
+            backgroundColor = .systemBackground
+            
+        case .info:
+            axis = .horizontal
+            spacing = Layout.offset6
+            distribution = .equalSpacing
+            alignment = .center
             
             directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
             isLayoutMarginsRelativeArrangement = true

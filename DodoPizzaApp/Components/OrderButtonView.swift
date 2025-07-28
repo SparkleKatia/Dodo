@@ -7,9 +7,15 @@
 
 import UIKit
 
+// MARK: - OrderButtonView
+
 class OrderButtonView: UIView {
     
+    // MARK: - Public API
+    
     var onOrderButtonTapped: (()->())?
+    
+    // MARK: - Subviews
     
     private lazy var orderButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
@@ -17,12 +23,7 @@ class OrderButtonView: UIView {
         container.font = .boldSystemFont(ofSize: 15)
         configuration.attributedTitle = AttributedString("Make an order with 40 zl", attributes: container)
         configuration.cornerStyle = .capsule
-        configuration.baseBackgroundColor = UIColor(
-            red:   235.0 / 255.0,
-            green: 113.0 / 255.0,
-            blue:   50.0 / 255.0,
-            alpha:  1.0
-        )
+        configuration.baseBackgroundColor = UIColor.carrot
         configuration.baseForegroundColor = .systemBackground
         configuration.image?.withTintColor(.systemBackground)
         configuration.imagePadding = 6
@@ -33,6 +34,8 @@ class OrderButtonView: UIView {
         return button
     }()
     
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -42,6 +45,8 @@ class OrderButtonView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setup
     
     func setupViews() {
         addSubview(orderButton)
@@ -55,9 +60,11 @@ class OrderButtonView: UIView {
             orderButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             orderButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -16),
             orderButton.heightAnchor.constraint(equalToConstant: 42)
+            
         ])
     }
     
+    // MARK: - Actions
     @objc
     func orderButtonTap() {
         onOrderButtonTapped?()

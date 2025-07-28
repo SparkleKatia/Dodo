@@ -12,12 +12,14 @@ enum LabelType {
     case price
     case banner
     case cart
+    case info
 }
 
 class Label: InsetLabel {
     
     init(type: LabelType, text: String = "") {
         super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
         commonInit(type, text)
     }
     
@@ -31,7 +33,8 @@ class Label: InsetLabel {
         case .name:
             self.text = text
             font = UIFont.boldSystemFont(ofSize: 14)
-            numberOfLines = 2
+            lineBreakMode = .byWordWrapping
+            numberOfLines = 3
             
         case .description:
             self.text = text
@@ -42,10 +45,10 @@ class Label: InsetLabel {
             
         case .price:
             self.text = text
-            font = UIFont.boldSystemFont(ofSize: 15)
-            backgroundColor = .lightGray.withAlphaComponent(0.5)
-            contentInset = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
-            layer.cornerRadius = 16
+            font = UIFont.boldSystemFont(ofSize: 13)
+            backgroundColor = .systemGray6
+            contentInset = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10)
+            layer.cornerRadius = 14
             clipsToBounds = true
             
         case .cart:
@@ -57,6 +60,11 @@ class Label: InsetLabel {
             self.text = text
             font = UIFont.boldSystemFont(ofSize: 22)
             lineBreakMode = .byWordWrapping
+        case .info:
+            self.text = text
+            font = UIFont.systemFont(ofSize: 13)
+            lineBreakMode = .byWordWrapping
+            numberOfLines = 3
         }
     }
 }

@@ -51,6 +51,7 @@ class CustomStepper: UIControl {
      //MARK: - Life Cycle
      override init(frame: CGRect) {
          super.init(frame: frame)
+         translatesAutoresizingMaskIntoConstraints = false
          setupViews()
          setupContraints()
      }
