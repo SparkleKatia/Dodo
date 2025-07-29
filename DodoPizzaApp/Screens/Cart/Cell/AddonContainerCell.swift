@@ -6,7 +6,11 @@
 //
 import UIKit
 
+// MARK: - AddonContainerCell
+
 final class AddonContainerCell: UITableViewCell {
+    
+    // MARK: - Subviews
     
     private lazy var addonCollection: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
@@ -15,13 +19,10 @@ final class AddonContainerCell: UITableViewCell {
         var collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.delegate = self
         collection.dataSource = self
-        
-        
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(AddonCollectionCell.self, forCellWithReuseIdentifier: AddonCollectionCell.reuseID)
         return collection
     }()
-    
     private lazy var titleLable: UILabel = {
         var label = UILabel()
         label.text = "Add to the order?"
@@ -29,6 +30,8 @@ final class AddonContainerCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,6 +42,8 @@ final class AddonContainerCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Layout
     
     private func setupView() {
         contentView.addSubview(addonCollection)
@@ -58,9 +63,11 @@ final class AddonContainerCell: UITableViewCell {
     }
 }
 
-extension AddonContainerCell: UICollectionViewDelegate {
-    
-}
+// MARK: - UICollectionViewDelegate
+
+extension AddonContainerCell: UICollectionViewDelegate { }
+
+// MARK: - UICollectionViewDataSource
 
 extension AddonContainerCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

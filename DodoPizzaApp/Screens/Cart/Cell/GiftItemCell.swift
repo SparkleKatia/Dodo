@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - GiftItemCell
+
 final class GiftItemCell: UITableViewCell {
+    
+    // MARK: - Subviews
     
     private let giftName: Label = Label(type: .name)
     private let giftDescription: Label = Label(type: .description)
@@ -15,7 +19,6 @@ final class GiftItemCell: UITableViewCell {
     private let giftPrice: Label = Label(type: .cart)
     private let stepper: CustomStepper = CustomStepper()
     private let verticalStackView: StackView = StackView(type: .productCell)
-    
     private lazy var giftIcon: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(named: "gift-box")?.withRenderingMode(.alwaysTemplate)
@@ -23,7 +26,6 @@ final class GiftItemCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
     private lazy var giftIconLabel: UILabel = {
         var label = UILabel()
         label.textColor = UIColor.carrot
@@ -31,8 +33,9 @@ final class GiftItemCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     private let horisontalStackView: StackView = StackView(type: .cartGift)
+    
+    // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,6 +48,8 @@ final class GiftItemCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Layout
     
     private func setupViews() {
         contentView.addSubview(giftImageView)
@@ -83,6 +88,8 @@ final class GiftItemCell: UITableViewCell {
             giftIcon.heightAnchor.constraint(equalToConstant: 16)
         ])
     }
+    
+    // MARK: - Public
     
     func update() {
         giftName.text = "Pizza dox 30"

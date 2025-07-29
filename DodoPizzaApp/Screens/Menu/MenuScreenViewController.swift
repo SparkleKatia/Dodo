@@ -21,7 +21,6 @@ final class MenuScreenViewController: UIViewController {
     private lazy var cartButton = CartButton()
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .orange
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
@@ -136,7 +135,6 @@ extension MenuScreenViewController {
         update(products)
     }
 }
-
 
 //MARK: - Navigation
 

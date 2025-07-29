@@ -7,9 +7,15 @@
 
 import UIKit
 
+// MARK: - AddonCollectionCell
+
 final class AddonCollectionCell: UICollectionViewCell {
     
+    // MARK: - Static
+    
     static let reuseID = "AddonCollectionCell"
+    
+    // MARK: - Subviews
     
     private var containerView: UIView = {
         var view = UIView()
@@ -23,12 +29,10 @@ final class AddonCollectionCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     private var productName: Label = Label(type: .name, text: "Rolls Pineapple & Cinamon")
     private var productDescription: Label = Label(type: .description, text: "16 pc")
     private var verticalStackView: StackView = StackView(type: .productCell)
     private var addonImage: ImageView = ImageView(type: .addonCart)
-    
     private var addonButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
         var container = AttributeContainer()
@@ -42,6 +46,7 @@ final class AddonCollectionCell: UICollectionViewCell {
         return button
     }()
 
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,6 +58,8 @@ final class AddonCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Layout
+    
     private func setupViews() {
         contentView.addSubview(containerView)
         contentView.addSubview(addonImage)
@@ -60,7 +67,6 @@ final class AddonCollectionCell: UICollectionViewCell {
         verticalStackView.addArrangedSubview(productDescription)
         containerView.addSubview(verticalStackView)
         containerView.addSubview(addonButton)
-        
     }
     
     private func setupConstraints() {

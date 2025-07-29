@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - ProductCell
 
-class ProductCell: UITableViewCell {
+final class ProductCell: UITableViewCell {
     
     // MARK: - Static
     

@@ -7,9 +7,12 @@
 
 import UIKit
 
+// MARK: - CartProductCell
+
 final class CartProductCell: UITableViewCell {
     
     // MARK: - Subviews
+    
     private var productImageView = ImageView(type: .cart)
     private var verticalStackView = StackView(type: .productCell)
     private var productNameLabel = Label(type: .name)
@@ -17,7 +20,8 @@ final class CartProductCell: UITableViewCell {
     private var stepper = CustomStepper()
     private var priceLabel = Label(type: .cart)
     
-    // MARK: - Life cycle
+    // MARK: - Initializers
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -29,6 +33,8 @@ final class CartProductCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Layout
+    
     private func setupViews() {
         contentView.addSubview(productImageView)
         contentView.addSubview(verticalStackView)
@@ -39,7 +45,6 @@ final class CartProductCell: UITableViewCell {
     }
     
     private func setupConstraints() {
-        
         NSLayoutConstraint.activate([
             productImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -59,6 +64,7 @@ final class CartProductCell: UITableViewCell {
         ])
     }
     
+    // MARK: - Public
     func update() {
         productNameLabel.text = "Margarita Classic"
         descriptionLabel.text = "30 cm, traditional"

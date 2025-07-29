@@ -7,9 +7,15 @@
 
 import UIKit
 
+// MARK: - AdressCell
+
 final class AdressCell: UITableViewCell {
     
+    // MARK: - Static
+    
     static let reuseID = "AdressCell"
+    
+    // MARK: - Subviews
     
     private lazy var deliveryIconImageView: UIImageView = {
         var imageView = UIImageView()
@@ -18,20 +24,17 @@ final class AdressCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
     private let streetLabel = Label(type: .cart)
     private let arrowButton: UIButton = {
         var button = UIButton()
-        
         let cfg    = UIImage.SymbolConfiguration(pointSize: 14, weight: .semibold)
-        button.setImage(UIImage(systemName: "chevron.forward",
-                               withConfiguration: cfg),
-                       for: .normal)
-
+        button.setImage(UIImage(systemName: "chevron.forward", withConfiguration: cfg), for: .normal)
         button.tintColor = .systemGray
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,14 +47,16 @@ final class AdressCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    // MARK: - Layout
+    
+    private func setupViews() {
         contentView.addSubview(deliveryIconImageView)
         streetLabel.text = "Grzybowska,49D"
         contentView.addSubview(streetLabel)
         contentView.addSubview(arrowButton)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         streetLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             deliveryIconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
@@ -67,5 +72,4 @@ final class AdressCell: UITableViewCell {
             arrowButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
-    
 }

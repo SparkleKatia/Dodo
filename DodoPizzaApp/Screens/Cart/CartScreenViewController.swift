@@ -111,6 +111,8 @@ extension CartScreenViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension CartScreenViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateNavBarTitleVisibility()
