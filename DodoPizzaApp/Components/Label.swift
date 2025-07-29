@@ -60,6 +60,7 @@ class Label: InsetLabel {
             self.text = text
             font = UIFont.boldSystemFont(ofSize: 22)
             lineBreakMode = .byWordWrapping
+            
         case .info:
             self.text = text
             font = UIFont.systemFont(ofSize: 13)

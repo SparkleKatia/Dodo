@@ -21,7 +21,7 @@ class OrderButtonView: UIView {
         var configuration = UIButton.Configuration.filled()
         var container = AttributeContainer()
         container.font = .boldSystemFont(ofSize: 15)
-        configuration.attributedTitle = AttributedString("Make an order with 40 zl", attributes: container)
+        configuration.attributedTitle = AttributedString("Add to cart", attributes: container)
         configuration.cornerStyle = .capsule
         configuration.baseBackgroundColor = UIColor.carrot
         configuration.baseForegroundColor = .systemBackground

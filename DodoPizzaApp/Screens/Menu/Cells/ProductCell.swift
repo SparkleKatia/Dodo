@@ -25,9 +25,9 @@ final class ProductCell: UITableViewCell {
     }(UIView())
     
     private var verticlStackView: StackView = StackView(type: .productCell)
-    private var nameLabel: Label = Label(type: .name, text: "")
-    private var detailLabel: Label = Label(type: .description, text: "")
-    private var priceLabel: Label = Label(type: .price, text: "ot 200 p")
+    private var nameLabel: Label = Label(type: .name)
+    private var detailLabel: Label = Label(type: .description)
+    private var priceLabel: Label = Label(type: .price)
     private var productImageView: ImageView = ImageView(type: .product)
     
     // MARK: - Initializers
@@ -48,7 +48,7 @@ final class ProductCell: UITableViewCell {
         nameLabel.text = product.name
         detailLabel.text = product.detail
         productImageView.image = UIImage(named: product.image)
-        
+        priceLabel.text = "from \(product.price)"
     }
 }
 
