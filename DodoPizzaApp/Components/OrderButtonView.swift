@@ -40,6 +40,15 @@ class OrderButtonView: UIView {
         super.init(frame: frame)
         setupViews()
         setupConstraint()
+
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        backgroundColor = .systemBackground
+        layer.shadowColor   = UIColor.gray.cgColor
+        layer.shadowOpacity = 0.2
+        layer.shadowOffset  = .zero
     }
     
     required init?(coder: NSCoder) {

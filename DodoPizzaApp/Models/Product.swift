@@ -8,6 +8,6 @@
 struct Product: Decodable {
     var name: String
     var detail: String
-    var price: Int
+    var price: Double
     var image: String
 }

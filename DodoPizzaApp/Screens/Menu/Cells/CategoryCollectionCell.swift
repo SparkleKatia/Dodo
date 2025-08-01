@@ -42,10 +42,10 @@ extension CategoryCollectionCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            categoryLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 6),
-            categoryLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 6),
-            categoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
-            categoryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
+            categoryLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            categoryLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            categoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            categoryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
     }
 }

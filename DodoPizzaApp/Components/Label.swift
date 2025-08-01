@@ -13,6 +13,7 @@ enum LabelType {
     case banner
     case cart
     case info
+    case bannerName
 }
 
 class Label: InsetLabel {
@@ -45,8 +46,9 @@ class Label: InsetLabel {
             
         case .price:
             self.text = text
-            font = UIFont.boldSystemFont(ofSize: 13)
+            font = .systemFont(ofSize: 12, weight: .medium)
             backgroundColor = .systemGray6
+            textAlignment = .center 
             contentInset = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10)
             layer.cornerRadius = 14
             clipsToBounds = true
@@ -66,6 +68,11 @@ class Label: InsetLabel {
             font = UIFont.systemFont(ofSize: 13)
             lineBreakMode = .byWordWrapping
             numberOfLines = 3
+        case .bannerName:
+            self.text = text
+            font = UIFont.boldSystemFont(ofSize: 22)
+            lineBreakMode = .byWordWrapping
         }
+        
     }
 }

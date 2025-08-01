@@ -18,8 +18,8 @@ final class ProductCell: UITableViewCell {
     // MARK: - Subviews
     
     private var containerView: UIView = {
-        $0.backgroundColor = .white
         $0.applyShadow(cornerRadius: 10)
+        $0.backgroundColor = .systemBackground
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
@@ -48,7 +48,7 @@ final class ProductCell: UITableViewCell {
         nameLabel.text = product.name
         detailLabel.text = product.detail
         productImageView.image = UIImage(named: product.image)
-        priceLabel.text = "from \(product.price)"
+        priceLabel.text = "from \(product.price) zl"
     }
 }
 
@@ -63,7 +63,7 @@ extension ProductCell {
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Layout.offset8),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Layout.offset8),
             
-            productImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: Layout.offset8),
+            productImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             productImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             productImageView.topAnchor.constraint(greaterThanOrEqualTo: containerView.topAnchor, constant: Layout.offset8),
             productImageView.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -Layout.offset8),

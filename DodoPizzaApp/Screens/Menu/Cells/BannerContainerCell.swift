@@ -13,21 +13,13 @@ class BannerContainerCell: UITableViewCell {
     
     // MARK: - Subviews
     
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Выгодно и вкусно"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        label.lineBreakMode = .byWordWrapping
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
+    private lazy var nameLabel: Label = Label(type: .bannerName, text: "Выгодно и вкусно")
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 220, height: 100)
                                  
-        var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(BannerCollectionCell.self, forCellWithReuseIdentifier: BannerCollectionCell.reuseID)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -62,7 +54,7 @@ extension BannerContainerCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             
             collectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor,constant: 8),

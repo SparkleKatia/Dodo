@@ -139,24 +139,18 @@ extension DetailProductViewController: UITableViewDataSource {
         switch productInfoSection {
         case .productImage:
             let cell = tableView.dequeuCell(indexPath) as ProductImageCell
-            cell.separatorInset = UIEdgeInsets(top: 0,
-                                               left: .greatestFiniteMagnitude,
-                                               bottom: 0,
-                                               right: 0) 
+            
+            // TODO: Moved removing separator to UITableViewCell extension, is it ok?
+            
+            cell.removeSeparator()
             return cell
         case .productDescription:
             let cell = tableView.dequeuCell(indexPath) as DescriptionCell
-            cell.separatorInset = UIEdgeInsets(top: 0,
-                                               left: .greatestFiniteMagnitude,
-                                               bottom: 0,
-                                               right: 0)
+            cell.removeSeparator()
             return cell
         case .ingridientChip:
             let cell = tableView.dequeuCell(indexPath) as IngredientChipContainer
-            cell.separatorInset = UIEdgeInsets(top: 0,
-                                               left: .greatestFiniteMagnitude,
-                                               bottom: 0,
-                                               right: 0)
+            cell.removeSeparator()
             cell.update(ingredients)
             cell.onRemove = { [weak self] ing in
                 guard let self else { return }
@@ -169,17 +163,11 @@ extension DetailProductViewController: UITableViewDataSource {
             
         case .sizeDoughSelector:
             let cell = tableView.dequeuCell(indexPath) as SizeDoughSelectorCell
-            cell.separatorInset = UIEdgeInsets(top: 0,
-                                               left: .greatestFiniteMagnitude,
-                                               bottom: 0,
-                                               right: 0)
+            cell.removeSeparator()
             return cell
         case .ingredientContainer:
             let cell = tableView.dequeuCell(indexPath) as IngredientCollectionContainerCell
-            cell.separatorInset = UIEdgeInsets(top: 0,
-                                               left: .greatestFiniteMagnitude,
-                                               bottom: 0,
-                                               right: 0)
+            cell.removeSeparator()
             cell.update(ingredients)
             return cell
         }

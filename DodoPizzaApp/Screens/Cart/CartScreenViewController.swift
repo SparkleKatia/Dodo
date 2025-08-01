@@ -19,8 +19,6 @@ class CartScreenViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .systemBackground
-        tableView.separatorStyle  = .singleLine
-        tableView.separatorColor  = .tertiaryLabel
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorInset = .zero
         
@@ -72,6 +70,7 @@ extension CartScreenViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeuCell(indexPath) as AdressCell
+            // TODO: Is there any workarond for this hack with separator?
            cell.separatorInset = UIEdgeInsets(top: 0,
                                               left: .greatestFiniteMagnitude,
                                               bottom: 0,
@@ -116,7 +115,6 @@ extension CartScreenViewController: UITableViewDataSource {
 extension CartScreenViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateNavBarTitleVisibility()
-        print("scrolling is now")
     }
 }
 
