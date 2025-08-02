@@ -13,15 +13,9 @@ final class DetailProductViewController: UIViewController {
 
     // MARK: - Private properties
     
-    private var ingredients = [
-        Ingredient(name: "Креветки", image: "ham2", price: 50),
-        Ingredient(name: "Креветки", image: "ham2", price: 50),
-        Ingredient(name: "Креветки", image: "ham2", price: 50),
-        Ingredient(name: "Креветки", image: "ham2", price: 50),
-        Ingredient(name: "Креветки", image: "ham2", price: 50),
-        Ingredient(name: "Креветки", image: "ham2", price: 50),
-        Ingredient(name: "Креветки", image: "ham2", price: 50)
-    ]
+    private let product: Product
+    private let ingredientService = IngredientService()
+    private var ingredients: [Ingredient] = []
     
     // MARK: - Subviews
     
@@ -56,12 +50,25 @@ final class DetailProductViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Initializers
+    
+    init(product: Product) {
+        self.product = product
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupConstarints()
+        fetchIngredients()
+        print(ingredients)
     }
     
     @objc private func closeButtonTapped() {
@@ -111,7 +118,7 @@ extension DetailProductViewController {
     }
 }
 
-// MARK: - DetailProductViewController
+// MARK: - UITableViewDataSource
 
 extension DetailProductViewController: UITableViewDataSource {
     
@@ -141,11 +148,12 @@ extension DetailProductViewController: UITableViewDataSource {
             let cell = tableView.dequeuCell(indexPath) as ProductImageCell
             
             // TODO: Moved removing separator to UITableViewCell extension, is it ok?
-            
+            cell.update(productImage: product.image)
             cell.removeSeparator()
             return cell
         case .productDescription:
             let cell = tableView.dequeuCell(indexPath) as DescriptionCell
+            cell.update(product: product)
             cell.removeSeparator()
             return cell
         case .ingridientChip:
@@ -174,6 +182,23 @@ extension DetailProductViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - DetailProductViewController
+// MARK: - UITableViewDelegate
 
 extension DetailProductViewController: UITableViewDelegate { }
+
+
+//MARK: - Business Logic
+
+extension DetailProductViewController {
+    
+    private func fetchIngredients() {
+        ingredientService.fetchIngredients(for: product.id) { [weak self] ingredients in
+            guard let self else { return }
+            self.ingredients = ingredients
+            self.tableView.reloadData()
+        }
+        
+    }
+}
+
+

@@ -74,7 +74,9 @@ extension MenuScreenViewController: UITableViewDelegate {
         guard let menuSection = MenuSection(rawValue: indexPath.section) else { return }
         
         switch menuSection {
-        case .products: navigateToDetailScreen()
+        case .products:
+            let product = products[indexPath.row]
+            navigateToDetailScreen(with: product)
         default: return
         }
     }
@@ -117,7 +119,7 @@ extension MenuScreenViewController: UITableViewDataSource {
 
 extension MenuScreenViewController {
     func update(_ products: [Product]) {
-        tableView.reloadData()
+        tableView.reloadData() // TODO: Why we duplicate it in fetchProducts?
     }
 }
 
@@ -140,9 +142,9 @@ extension MenuScreenViewController {
 
 extension MenuScreenViewController {
     
-    func navigateToDetailScreen() {
-        let detailProductVC = DetailProductViewController()
-        present(detailProductVC, animated: true)
+    func navigateToDetailScreen(with product: Product) {
+        let detailVC = DetailProductViewController(product: product)
+        present(detailVC, animated: true)
     }
 }
 

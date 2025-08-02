@@ -1,16 +1,18 @@
 //
-//  ProductsService.swift
+//  IngridientService.swift
 //  DodoPizzaApp
 //
-//  Created by Kateryna on 08/05/2025.
+//  Created by Kateryna on 01/08/2025.
 //
+
 import UIKit
 
-class ProductsService {
-
-    func fetchProducts(completion: @escaping ([Product])->()) {
+final class IngredientService {
+    
+    func fetchIngredients(for productID: String,
+                       completion: @escaping ([Ingredient]) -> Void) {
         
-        guard let url = URL.init(string: "http://localhost:3003/products") else { return }
+        guard let url = URL.init(string: "http://localhost:3003/products/\(productID)/ingredients") else { return }
         
         let urlRequest = URLRequest(url: url)
         
@@ -21,7 +23,6 @@ class ProductsService {
             if error != nil {
                 print(error?.localizedDescription)
             }
-            
             
             if let response = response as? HTTPURLResponse {
                 
@@ -39,10 +40,10 @@ class ProductsService {
             let decoder = JSONDecoder()
             
             do {
-                let products = try decoder.decode([Product].self, from: data)
+                let ingresients = try decoder.decode([Ingredient].self, from: data)
                 print(Thread.current)
                 DispatchQueue.main.async {
-                    completion(products)
+                    completion(ingresients)
                 }
                
             } catch {

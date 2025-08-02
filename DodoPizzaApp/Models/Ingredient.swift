@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct Ingredient: Hashable {
-    let id = UUID()
+struct Ingredient: Decodable, Hashable, Identifiable {
+    let id: String
     let name: String
     let image: String
     let price: Double

@@ -49,4 +49,11 @@ final class DescriptionCell: UITableViewCell {
             verticalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
         ])
     }
+    
+    // MARK: - Public
+    
+    func update(product: Product) {
+        productName.text = product.name
+        productDescription.text = product.detail
+    }
 }

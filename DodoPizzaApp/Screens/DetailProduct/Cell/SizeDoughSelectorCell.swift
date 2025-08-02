@@ -31,12 +31,17 @@ final class SizeDoughSelectorCell: UITableViewCell {
         let control = UISegmentedControl.init(items: ["20 sm", "30 sm", "35 sm"])
         control.translatesAutoresizingMaskIntoConstraints = false
         control.selectedSegmentIndex = 0
+        control.backgroundColor = .systemGray6
         return control
     }()
     private lazy var doughControl: UISegmentedControl = {
         let control = UISegmentedControl.init(items: ["traditional", "Thin"])
         control.translatesAutoresizingMaskIntoConstraints = false
         control.selectedSegmentIndex = 1
+        // TODO: Why gray color is different here?
+        control.backgroundColor = .systemGray6
+        control.layer.cornerRadius = 12
+        control.clipsToBounds = true
         return control
     }()
     private lazy var verticalStackView: UIStackView = {

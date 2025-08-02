@@ -136,12 +136,13 @@ extension IngredientCollectionContainerCell {
     
     func update(_ ingredients: [Ingredient]) {
         self.ingredients = ingredients
+        print(ingredients)
         ingredientsCollection.reloadData()
-        let count = Double(ingredients.count)
-        let row = (count / 3).rounded(.up)
-        let cellHeight = 160.0
-        let offset = 8.0
-        let collectionHeight = row * cellHeight + offset * (row + 1)
-        ingredientsCollection.heightAnchor.constraint(equalToConstant: collectionHeight).isActive = true
+//        let count = Double(ingredients.count)
+//        let row = (count / 3).rounded(.up)
+//        let cellHeight = 160.0
+//        let offset = 8.0
+//        let collectionHeight = row * cellHeight + offset * (row + 1)
+       ingredientsCollection.heightAnchor.constraint(equalToConstant: 500).isActive = true
     }
 }

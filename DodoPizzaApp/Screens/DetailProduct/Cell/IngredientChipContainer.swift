@@ -104,6 +104,7 @@ extension IngredientChipContainer {
             ingridientsChipcollection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             ingridientsChipcollection.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             ingridientsChipcollection.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
+            ingridientsChipcollection.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }

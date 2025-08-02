@@ -45,5 +45,11 @@ final class ProductImageCell: UITableViewCell {
             detailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             detailImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
-    }    
+    }
+    
+    // MARK: - Public
+    
+    func update(productImage: String){
+        detailImageView.image = UIImage(named: productImage)
+    }
 }

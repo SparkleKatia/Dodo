@@ -37,6 +37,8 @@ final class IngredientCollectionCell: UICollectionViewCell {
         label.textAlignment = .center
         label.text = "Ham"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     private lazy var ingredientPriceLabel: UILabel = {
@@ -106,6 +108,7 @@ extension IngredientCollectionCell {
     func update(_ ingredient: Ingredient) {
         ingredientImageView.image = UIImage(named: ingredient.image)
         ingredientNameLabel.text = ingredient.name
+        //print(ingredient.name)
         ingredientPriceLabel.text = "\(ingredient.price)"
     }
 }
