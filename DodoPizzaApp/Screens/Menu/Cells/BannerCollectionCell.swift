@@ -16,10 +16,8 @@ class BannerCollectionCell: UICollectionViewCell {
     
     // MARK: - Subviews
     
-    private lazy var priceLabel: UIView = Label(type: .price, text: "600 p")
-    private lazy var nameLabel: UILabel = Label(type: .name, text: "Margarita")
-    private lazy var productImageView: UIImageView = ImageView(type: .banner)
-    private lazy var verticalStack: UIStackView = StackView(type: .productCell)
+    private lazy var productImageView: ImageView = ImageView(type: .banner)
+    private lazy var containerView: UIView = UIView()
     
     // MARK: - Initializers
     
@@ -39,20 +37,28 @@ class BannerCollectionCell: UICollectionViewCell {
 extension BannerCollectionCell {
     
     private func setupViews() {
-        verticalStack.addArrangedSubview(nameLabel)
-        verticalStack.addArrangedSubview(priceLabel)
+        contentView.layer.cornerRadius = 12
+        contentView.layer.masksToBounds = true
         contentView.addSubview(productImageView)
-        contentView.addSubview(verticalStack)
+
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            productImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            productImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            productImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            productImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             
-            verticalStack.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
-            verticalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            verticalStack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
+    }
+}
+
+// MARK: - Public
+
+extension BannerCollectionCell {
+    
+    func configure(with banner: Banner) {
+        productImageView.image = UIImage(named: banner.image)
     }
 }

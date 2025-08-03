@@ -51,7 +51,7 @@ final class NavigationBarView: UIView {
         configuration.baseBackgroundColor = .systemBackground
         let button = UIButton(configuration: configuration, primaryAction: nil)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(nil, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         return button
     }()
     

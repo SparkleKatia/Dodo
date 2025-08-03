@@ -36,14 +36,6 @@ class CartScreenViewController: UIViewController {
     }()
     private lazy var orderButtonView = OrderButtonView()
 
-    // TODO: - Where to move updateNavBarTitleVisibility ?
-    
-    private func updateNavBarTitleVisibility() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        let isAddressVisible = tableView.indexPathsForVisibleRows?
-            .contains(indexPath) ?? false
-        navBar.setTitle("Grzybowska, 49D", visible: !isAddressVisible)
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -178,4 +170,16 @@ extension CartScreenViewController {
              print("orderButton")
          }
      }
+}
+
+// MARK: - Update view
+
+extension CartScreenViewController {
+    
+    private func updateNavBarTitleVisibility() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        let isAddressVisible = tableView.indexPathsForVisibleRows?
+            .contains(indexPath) ?? false
+        navBar.setTitle("Grzybowska, 49D", visible: !isAddressVisible)
+    }
 }

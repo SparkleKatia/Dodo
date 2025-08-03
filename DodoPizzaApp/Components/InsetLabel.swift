@@ -22,9 +22,9 @@ class InsetLabel: UILabel {
     
     // TODO: Why do we need to override drawText? (it just moves the text in the center?)
     
-//    override func drawText(in rect: CGRect) {
-//        super.drawText(in: rect.inset(by: contentInset))
-//    }
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: contentInset))
+    }
     
     override var intrinsicContentSize: CGSize {
         var size = super.intrinsicContentSize

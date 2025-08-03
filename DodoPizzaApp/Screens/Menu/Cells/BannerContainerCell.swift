@@ -11,13 +11,17 @@ import UIKit
 
 class BannerContainerCell: UITableViewCell {
     
+    // MARK: - Private
+    
+    private var banners: [Banner] = []
+    
     // MARK: - Subviews
     
     private lazy var nameLabel: Label = Label(type: .bannerName, text: "Выгодно и вкусно")
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 220, height: 100)
+        layout.itemSize = CGSize(width: 90, height: 110)
                                  
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(BannerCollectionCell.self, forCellWithReuseIdentifier: BannerCollectionCell.reuseID)
@@ -70,14 +74,14 @@ extension BannerContainerCell {
 extension BannerContainerCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return banners.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionCell.reuseID, for: indexPath) as? BannerCollectionCell else {
             return UICollectionViewCell()
         }
-        
+        cell.configure(with: banners[indexPath.row])
         return cell
     }
 }
@@ -85,3 +89,14 @@ extension BannerContainerCell: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension BannerContainerCell: UICollectionViewDelegate { }
+
+
+// MARK: - Public
+
+extension BannerContainerCell {
+    
+    func update(banners: [Banner]) {
+        self.banners = banners
+        collectionView.reloadData()
+    }
+}

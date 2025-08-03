@@ -43,10 +43,9 @@ class ImageView: UIImageView {
             widthAnchor.constraint(equalToConstant: 300).isActive = true
             
         case .banner:
-            image = UIImage(named: "margarita")
-            contentMode = .scaleAspectFit
-            heightAnchor.constraint(equalToConstant: 100).isActive = true
-            widthAnchor.constraint(equalToConstant: 100).isActive = true
+            image = UIImage(named: "banner1")
+            contentMode = .scaleToFill
+
             
         case .cart:
             image = UIImage(named: "margarita")

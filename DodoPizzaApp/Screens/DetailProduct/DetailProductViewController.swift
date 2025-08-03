@@ -150,6 +150,7 @@ extension DetailProductViewController: UITableViewDataSource {
             // TODO: Moved removing separator to UITableViewCell extension, is it ok?
             cell.update(productImage: product.image)
             cell.removeSeparator()
+            // TODO: add custom view as separator
             return cell
         case .productDescription:
             let cell = tableView.dequeuCell(indexPath) as DescriptionCell

@@ -13,6 +13,10 @@ final class CategoryContainerHeader: UITableViewHeaderFooterView {
     // MARK: - Static
     
     static let reuseID = "CategoryContainerHeader"
+    
+    // MARK: - Private
+    
+    private var categories: [ICategory] = []
 
     // MARK: - Subviews
     
@@ -68,11 +72,12 @@ extension CategoryContainerHeader {
 
 extension CategoryContainerHeader: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
+        categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionCell.reuseID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionCell.reuseID, for: indexPath) as! CategoryCollectionCell
+        cell.configure(with: categories[indexPath.row])
         return cell
     }
 }
@@ -80,3 +85,15 @@ extension CategoryContainerHeader: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension CategoryContainerHeader: UICollectionViewDelegate { }
+
+
+// MARK: - Public
+
+extension CategoryContainerHeader {
+    
+    func update(categories: [ICategory]) {
+        self.categories = categories
+        collectionView.reloadData()
+        print(self.categories)
+    }
+}

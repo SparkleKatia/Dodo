@@ -9,6 +9,17 @@ import UIKit
 
 // MARK: - SizeDoughSelectorCell
 
+
+func imageWithColor(_ color: UIColor) -> UIImage {
+    let rect = CGRect(x: 0, y: 0, width: 50, height: 50)
+    UIGraphicsBeginImageContext(rect.size)
+    color.setFill()
+    UIRectFill(rect)
+    let img = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    return img.resizableImage(withCapInsets: .zero)
+}
+
 final class SizeDoughSelectorCell: UITableViewCell {
     
     // MARK: - Static
@@ -31,7 +42,23 @@ final class SizeDoughSelectorCell: UITableViewCell {
         let control = UISegmentedControl.init(items: ["20 sm", "30 sm", "35 sm"])
         control.translatesAutoresizingMaskIntoConstraints = false
         control.selectedSegmentIndex = 0
-        control.backgroundColor = .systemGray6
+        //control.selectedSegmentTintColor = .orange
+        
+        let grayBackground = imageWithColor(UIColor.systemGray6)
+        let whiteColor = imageWithColor(UIColor.white)
+//
+        control.setBackgroundImage(grayBackground, for: .normal, barMetrics: .default)
+        //control.setBackgroundImage(whiteColor, for: .selected, barMetrics: .default)
+//        control.setDividerImage(grayBackground, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+//
+//        if #available(iOS 15.0, *) {
+//            let appearance = UISegmentedControl.appearance()
+//            appearance.selectedSegmentTintColor = UIColor(white: 0.9, alpha: 1)
+//            appearance.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+//            appearance.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
+//            //appearance.selectedSegmentTintColor
+//        }
+        control.selectedSegmentTintColor = .orange
         return control
     }()
     private lazy var doughControl: UISegmentedControl = {
@@ -39,7 +66,7 @@ final class SizeDoughSelectorCell: UITableViewCell {
         control.translatesAutoresizingMaskIntoConstraints = false
         control.selectedSegmentIndex = 1
         // TODO: Why gray color is different here?
-        control.backgroundColor = .systemGray6
+        control.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
         control.layer.cornerRadius = 12
         control.clipsToBounds = true
         return control
@@ -81,6 +108,7 @@ extension SizeDoughSelectorCell {
         verticalStackView.addArrangedSubview(doughControl)
         contentView.addSubview(verticalStackView)
     }
+
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([

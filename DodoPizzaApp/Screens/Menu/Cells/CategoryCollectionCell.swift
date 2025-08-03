@@ -49,3 +49,12 @@ extension CategoryCollectionCell {
         ])
     }
 }
+
+// MARK: - Public
+
+extension CategoryCollectionCell {
+    
+    func configure(with category: ICategory) {
+        categoryLabel.text = category.name
+    }
+}

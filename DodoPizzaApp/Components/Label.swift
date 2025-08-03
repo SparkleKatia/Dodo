@@ -48,7 +48,7 @@ class Label: InsetLabel {
             self.text = text
             font = .systemFont(ofSize: 12, weight: .medium)
             backgroundColor = .systemGray6
-            textAlignment = .center 
+            //textAlignment = .center 
             contentInset = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10)
             layer.cornerRadius = 14
             clipsToBounds = true

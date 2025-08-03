@@ -14,18 +14,25 @@ final class MenuScreenViewController: UIViewController {
     // MARK: - Private properties
     
     private let productService = ProductsService()
+    private let bannerService = BannersService()
+    private let categoryService = CategoryService()
     private var products: [Product] = []
+    private var banners: [Banner] = []
+    private var categories: [ICategory] = []
     
     // MARK: - Subviews
     
     private lazy var cartButton = CartButton()
+    // separate component
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .systemBackground
+        tableView.layer.cornerRadius = 25
         tableView.dataSource = self
         tableView.delegate = self
+            //generic
         tableView.register(CategoryContainerHeader.self, forHeaderFooterViewReuseIdentifier: CategoryContainerHeader.reuseID)
         tableView.registerCell(BannerContainerCell.self)
         tableView.registerCell(ProductCell.self)
@@ -42,16 +49,18 @@ final class MenuScreenViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        
         fetchProducts()
         setupObservers()
+        fetchBanners()
+        fetchCategories()
     }
 }
 
 // TODO: - Move it  to another file
 
-//@frozen
-public enum MenuSection: Int, CaseIterable {
-    case banners
+@frozen public enum MenuSection: Int, CaseIterable {
+    case banners = 0
     case products
 }
 
@@ -64,7 +73,9 @@ extension MenuScreenViewController: UITableViewDelegate {
         
         switch menuSection {
         case .products:
+            //generic for dequeueReusableHeaderFooterView
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CategoryContainerHeader.reuseID) as? CategoryContainerHeader
+            header?.update(categories: categories)
             return header
         default: return UIView()
         }
@@ -76,7 +87,7 @@ extension MenuScreenViewController: UITableViewDelegate {
         switch menuSection {
         case .products:
             let product = products[indexPath.row]
-            navigateToDetailScreen(with: product)
+           productCellSelect(product)
         default: return
         }
     }
@@ -105,6 +116,7 @@ extension MenuScreenViewController: UITableViewDataSource {
         switch menuSection {
         case .banners:
             let cell = tableView.dequeuCell(indexPath) as BannerContainerCell
+            cell.update(banners: banners)
             return cell
         case .products:
             let cell = tableView.dequeuCell(indexPath) as ProductCell
@@ -115,11 +127,15 @@ extension MenuScreenViewController: UITableViewDataSource {
     }
 }
 
-//MARK: - Update View
+//MARK: - Display Logic
 
 extension MenuScreenViewController {
     func update(_ products: [Product]) {
-        tableView.reloadData() // TODO: Why we duplicate it in fetchProducts?
+        tableView.reloadSections(IndexSet(integer: MenuSection.products.rawValue), with: .none)
+    }
+    
+    func update(_ banners: [Banner]) {
+        tableView.reloadSections(IndexSet(integer: MenuSection.banners.rawValue), with: .automatic)
     }
 }
 
@@ -131,10 +147,24 @@ extension MenuScreenViewController {
         productService.fetchProducts { [weak self] products in
             guard let self else { return }
             self.products = products
-            self.tableView.reloadData()
+            update(products)
         }
-        
-        update(products)
+    }
+    
+    private func fetchBanners() {
+        bannerService.fetchBanners { [weak self] banners in
+            guard let self else { return }
+            self.banners = banners
+            update(banners)
+        }
+    }
+    
+    private func fetchCategories() {
+        categoryService.fetchCategories { [weak self] categories in
+            guard let self else { return }
+            self.categories = categories
+            update(products)
+        }
     }
 }
 
@@ -148,6 +178,22 @@ extension MenuScreenViewController {
     }
 }
 
+// MARK: - Actions (Event handlers)
+
+extension MenuScreenViewController {
+    
+    private func setupObservers() {
+        cartButton.onCartButtonTapped = {
+            let cartVC = CartScreenViewController()
+            self.present(cartVC, animated: true)
+        }
+    }
+    
+    func productCellSelect(_ product: Product) {
+        navigateToDetailScreen(with: product)
+    }
+}
+
 // MARK: - Layout
 
 extension MenuScreenViewController {
@@ -156,7 +202,6 @@ extension MenuScreenViewController {
         view.backgroundColor = .systemGray5
         view.addSubview(tableView)
         view.addSubview(cartButton)
-        tableView.layer.cornerRadius = 25
     }
     
     private func setupConstraints() {
@@ -172,14 +217,4 @@ extension MenuScreenViewController {
     }
 }
 
-// MARK: - Actions (Event handlers)
 
-extension MenuScreenViewController {
-    
-    private func setupObservers() {
-        cartButton.onCartButtonTapped = {
-            let cartVC = CartScreenViewController()
-            self.present(cartVC, animated: true)
-        }
-    }
-}
