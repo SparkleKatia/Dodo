@@ -32,23 +32,7 @@ final class DetailProductViewController: UIViewController {
         tableView.registerCell(IngredientCollectionContainerCell.self)
         return tableView
     }()
-    private lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
-        button.setImage(UIImage(systemName: "chevron.down",withConfiguration: sizeConfig), for: .normal)
-        button.tintColor = .label
-        button.backgroundColor = .systemBackground
-        button.layer.cornerRadius = 22
-        button.layer.shadowColor   = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.15
-        button.layer.shadowRadius  = 4
-        button.layer.shadowOffset  = .zero
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self,
-                         action: #selector(closeButtonTapped),
-                         for: .touchUpInside)
-        return button
-    }()
+    private lazy var closeButton: CloseChevronButton = CloseChevronButton()
     
     // MARK: - Initializers
     
@@ -67,12 +51,16 @@ final class DetailProductViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstarints()
+        setupObservers()
         fetchIngredients()
-        print(ingredients)
     }
     
-    @objc private func closeButtonTapped() {
-         self.dismiss(animated: true)
+    // MARK: - Event Hndler
+    
+    private func setupObservers() {
+        closeButton.onCloseButtonTapped = {
+            self.dismiss(animated: true)
+        }
     }
     
 }
@@ -85,37 +73,6 @@ public enum ProductInfoSection: Int, CaseIterable {
     case ingridientChip
     case sizeDoughSelector
     case ingredientContainer
-}
-
-// MARK: - Layout
-
-extension DetailProductViewController {
-    
-    private func setupViews() {
-        view.backgroundColor = .systemBackground
-        view.addSubview(tableView)
-        view.addSubview(closeButton)
-        view.addSubview(orderButtonView)
-    }
-    
-    private func setupConstarints() {
-        NSLayoutConstraint.activate([
-            closeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                                 constant: 16),
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                             constant: 16),
-            closeButton.widthAnchor.constraint(equalToConstant: 44),
-            closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: orderButtonView.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            orderButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            orderButtonView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            orderButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -202,4 +159,33 @@ extension DetailProductViewController {
     }
 }
 
+// MARK: - Layout
 
+extension DetailProductViewController {
+    
+    private func setupViews() {
+        view.backgroundColor = .systemBackground
+        view.addSubview(tableView)
+        view.addSubview(closeButton)
+        view.addSubview(orderButtonView)
+    }
+    
+    private func setupConstarints() {
+        NSLayoutConstraint.activate([
+            closeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                                                 constant: 16),
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                             constant: 16),
+            closeButton.widthAnchor.constraint(equalToConstant: 44),
+            closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: orderButtonView.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            orderButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            orderButtonView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            orderButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+}

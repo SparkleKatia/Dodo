@@ -131,6 +131,13 @@ extension MenuScreenViewController: UITableViewDataSource {
         case .banners:
             let cell = tableView.dequeuCell(indexPath) as BannerContainerCell
             cell.update(banners: banners)
+            
+            // TODO: Is this observer implemented correctly?
+            
+            cell.onBannerSelected = { [weak self] banner in
+                 guard let self else { return }
+                 navigateToBannerScreen(with: banner)
+             }
             return cell
         case .products:
             let cell = tableView.dequeuCell(indexPath) as ProductCell
@@ -189,6 +196,11 @@ extension MenuScreenViewController {
     func navigateToDetailScreen(with product: Product) {
         let detailVC = DetailProductViewController(product: product)
         present(detailVC, animated: true)
+    }
+    
+    func navigateToBannerScreen(with banner: Banner) {
+        let vc = BannerViewController(image: banner.image)
+        self.present(vc, animated: true)
     }
 }
 

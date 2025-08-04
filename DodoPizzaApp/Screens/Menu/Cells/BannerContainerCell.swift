@@ -11,6 +11,10 @@ import UIKit
 
 class BannerContainerCell: UITableViewCell {
     
+    // MARK: - Public
+    
+    var onBannerSelected: ((Banner) -> Void)?
+    
     // MARK: - Private
     
     private var banners: [Banner] = []
@@ -88,7 +92,20 @@ extension BannerContainerCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension BannerContainerCell: UICollectionViewDelegate { }
+extension BannerContainerCell: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let banner = banners[indexPath.item]
+        onBannerSelected?(banner)
+    }
+    
+    // TODO: Is that corect?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        onBannerSelected = nil                 // avoid accidental retain cycles
+    }
+}
 
 
 // MARK: - Public
