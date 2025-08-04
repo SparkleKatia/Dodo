@@ -23,6 +23,15 @@ final class MenuScreenViewController: UIViewController {
     // MARK: - Subviews
     
     private lazy var cartButton = CartButton()
+    private lazy var profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "profile")
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     // separate component
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -54,6 +63,11 @@ final class MenuScreenViewController: UIViewController {
         setupObservers()
         fetchBanners()
         fetchCategories()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
+
     }
 }
 
@@ -202,11 +216,18 @@ extension MenuScreenViewController {
         view.backgroundColor = .systemGray5
         view.addSubview(tableView)
         view.addSubview(cartButton)
+        view.addSubview(profileImageView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            profileImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            profileImageView.widthAnchor.constraint(equalToConstant: 44),
+            profileImageView.heightAnchor.constraint(equalToConstant: 44),
+            
+            tableView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 16),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
