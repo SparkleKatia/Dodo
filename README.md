@@ -20,33 +20,5 @@
 |-------|------|-------|
 | **UI** | UIKit + Auto Layout | Pure-code constraints via anchors / `NSLayoutConstraint` |
 | **Networking** | Macoon | Local JSON API mock (`api/macoon.yaml`) |
-| **Reactive** | Combine | One-way data flow |
-| **Build** | Swift 5.10 · Xcode 16 · iOS 17+ | SPM only—no external UI kits |
 
----
-
-## ✨ Why this project exists
-
-1. **Hands-on UIKit** in a SwiftUI era.  
-2. **Programmatic discipline** — crystal-clear view hierarchies.  
-3. **e-Commerce patterns** — menus, variants, banners, modals.  
-4. **Offline-first development** with Macoon-mocked endpoints.
-
----
-
-## 🚀 Getting Started
-
-```bash
-# 1. Clone
-git clone https://github.com/your-username/dodo-pizza-clone.git
-cd dodo-pizza-clone
-
-# 2. Install mock server (first time only)
-brew install macoon
-
-# 3. Launch mock API (http://localhost:8080)
-macoon serve --config api/macoon.yaml
-
-# 4. Open & run
-open DodoPizzaClone.xcodeproj   # or .xcworkspace
-# ⌘R in Xcode
+> Tip: If you see blank data, make sure the Macoon server is running. 🍯
