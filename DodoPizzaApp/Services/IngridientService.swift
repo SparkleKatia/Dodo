@@ -9,10 +9,10 @@ import UIKit
 
 final class IngredientService {
     
-    func fetchIngredients(for productID: String,
+    func fetchIngredients(
                        completion: @escaping ([Ingredient]) -> Void) {
         
-        guard let url = URL.init(string: "http://localhost:3003/products/\(productID)/ingredients") else { return }
+        guard let url = URL.init(string: "http://localhost:3003/products/ingredients") else { return }
         
         let urlRequest = URLRequest(url: url)
         

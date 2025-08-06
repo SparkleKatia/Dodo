@@ -27,7 +27,9 @@ final class IngredientCollectionCell: UICollectionViewCell {
     private lazy var ingredientImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "ham2")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

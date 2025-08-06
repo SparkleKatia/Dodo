@@ -12,4 +12,5 @@ struct Product: Decodable, Identifiable {
     let detail: String
     let price: Double
     let image: String
+    let type: String
 }

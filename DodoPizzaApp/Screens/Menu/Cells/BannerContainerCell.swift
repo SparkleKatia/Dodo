@@ -21,7 +21,7 @@ class BannerContainerCell: UITableViewCell {
     
     // MARK: - Subviews
     
-    private lazy var nameLabel: Label = Label(type: .bannerName, text: "Выгодно и вкусно")
+   // private lazy var nameLabel: Label = Label(type: .bannerName, text: "Выгодно и вкусно")
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -56,17 +56,17 @@ class BannerContainerCell: UITableViewCell {
 extension BannerContainerCell {
     
     private func setupViews() {
-        contentView.addSubview(nameLabel)
+       // contentView.addSubview(nameLabel)
         contentView.addSubview(collectionView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
+//            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor,constant: 8),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
         ])

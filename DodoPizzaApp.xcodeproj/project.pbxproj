@@ -15,16 +15,30 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Info.plist,
+				Resources/jsons/banners.json,
+				Resources/jsons/products.json,
 			);
 			target = 26C8EC1F2DBE6CE8006815C6 /* DodoPizzaApp */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		26A7F8AF2E43C45F001E92D7 /* Exceptions for "DodoPizzaApp" folder in "Compile Sources" phase from "DodoPizzaApp" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 26C8EC1C2DBE6CE8006815C6 /* Sources */;
+			membershipExceptions = (
+				Resources/jsons/banners.json,
+				Resources/jsons/products.json,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		26C8EC222DBE6CE8006815C6 /* DodoPizzaApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				26C8EC352DBE6CEA006815C6 /* Exceptions for "DodoPizzaApp" folder in "DodoPizzaApp" target */,
+				26A7F8AF2E43C45F001E92D7 /* Exceptions for "DodoPizzaApp" folder in "Compile Sources" phase from "DodoPizzaApp" target */,
 			);
 			path = DodoPizzaApp;
 			sourceTree = "<group>";

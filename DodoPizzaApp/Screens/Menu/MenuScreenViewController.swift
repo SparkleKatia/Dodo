@@ -9,28 +9,40 @@ import UIKit
 
 // MARK: - MenuScreenViewController
 
+
 final class MenuScreenViewController: UIViewController {
     
-    // MARK: - Private properties
     
+    // MARK: - Private properties
     private let productService = ProductsService()
+    
     private let bannerService = BannersService()
+    
     private let categoryService = CategoryService()
+    
     private var products: [Product] = []
+    
     private var banners: [Banner] = []
+    
     private var categories: [ICategory] = []
     
-    // MARK: - Subviews
     
+    // MARK: - Subviews
     private lazy var cartButton = CartButton()
+    
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "profile")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // TODO: Is it correct to add gesture recognizer here?
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profileImageTapped)))
         return imageView
     }()
+    
     
     // separate component
     private lazy var tableView: UITableView = {
@@ -49,16 +61,62 @@ final class MenuScreenViewController: UIViewController {
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
+        
         return tableView
     }()
+    
+    
+    private lazy var deliveryIconImageView: UIImageView = {
+        var imageView = UIImageView()
+        imageView.image = UIImage(named: "delivery-man")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = UIColor.carrot
+        imageView.heightAnchor.constraint(equalToConstant: 18).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 18).isActive = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+    
+        return imageView
+    }()
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.layer.cornerRadius = 22
+        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private lazy var streetLabel = Label(type: .cart, text: "What is your adress?")
+    
+    private lazy var arrowButton: UIButton = {
+        var button = UIButton()
+        let cfg    = UIImage.SymbolConfiguration(pointSize: 14, weight: .semibold)
+        button.setImage(UIImage(systemName: "chevron.down", withConfiguration: cfg), for: .normal)
+        button.tintColor = .black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    private lazy var horizontalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.distribution = .equalSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
 
     // MARK: - LifeCycle
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        
         fetchProducts()
         setupObservers()
         fetchBanners()
@@ -202,6 +260,11 @@ extension MenuScreenViewController {
         let vc = BannerViewController(image: banner.image)
         self.present(vc, animated: true)
     }
+    
+    func navigateToProfileScreen() {
+        let profileVC = ProfileVC()
+        present(profileVC, animated: true)
+    }
 }
 
 // MARK: - Actions (Event handlers)
@@ -218,6 +281,10 @@ extension MenuScreenViewController {
     func productCellSelect(_ product: Product) {
         navigateToDetailScreen(with: product)
     }
+    
+    @objc func profileImageTapped() {
+        navigateToProfileScreen()
+    }
 }
 
 // MARK: - Layout
@@ -225,14 +292,23 @@ extension MenuScreenViewController {
 extension MenuScreenViewController {
     
     private func setupViews() {
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = .systemGray6
         view.addSubview(tableView)
         view.addSubview(cartButton)
         view.addSubview(profileImageView)
+        containerView.addSubview(deliveryIconImageView)
+        horizontalStackView.addArrangedSubview(containerView)
+        horizontalStackView.addArrangedSubview(streetLabel)
+        horizontalStackView.addArrangedSubview(arrowButton)
+        
+        view.addSubview(horizontalStackView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
+            horizontalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            horizontalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+
             profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             profileImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
@@ -245,7 +321,9 @@ extension MenuScreenViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             cartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            cartButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16)
+            cartButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            deliveryIconImageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            deliveryIconImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
         ])
     }
 }

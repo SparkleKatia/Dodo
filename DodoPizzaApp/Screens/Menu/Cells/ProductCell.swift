@@ -18,7 +18,7 @@ final class ProductCell: UITableViewCell {
     // MARK: - Subviews
     
     private var containerView: UIView = {
-        $0.applyShadow(cornerRadius: 10)
+       // $0.applyShadow(cornerRadius: 10)
         $0.backgroundColor = .systemBackground
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -60,18 +60,17 @@ extension ProductCell {
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Layout.offset16),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Layout.offset16),
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Layout.offset8),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Layout.offset8),
             
             productImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            productImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            productImageView.topAnchor.constraint(greaterThanOrEqualTo: containerView.topAnchor, constant: Layout.offset8),
+            productImageView.topAnchor.constraint(greaterThanOrEqualTo: containerView.topAnchor),
             productImageView.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -Layout.offset8),
 
             verticlStackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             verticlStackView.leadingAnchor
                    .constraint(equalTo: productImageView.trailingAnchor,
-                               constant: Layout.offset8),
+                               constant: 16),
             verticlStackView.trailingAnchor
                    .constraint(equalTo: contentView.trailingAnchor,
                                constant: -Layout.offset16)

@@ -26,18 +26,19 @@ final class IngredientChipContainer: UITableViewCell {
     // MARK: - Subviews
     
     private lazy var ingridientsChipcollection: UICollectionView = {
-        var layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        let layout = LeftAlignedFlowLayout()
+        layout.estimatedItemSize      = UICollectionViewFlowLayout.automaticSize
         layout.minimumInteritemSpacing = 8
-        layout.minimumLineSpacing = 8
-        
-        var collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.backgroundColor = .blue
-        collection.dataSource = self
-        collection.delegate   = self
+        layout.minimumLineSpacing      = 8
+        layout.sectionInset            = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
+        collection.dataSource      = self
+        collection.delegate        = self
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.register(IngredientChipCollectionCell.self, forCellWithReuseIdentifier: "IngredientChipCollectionCell")
+        collection.register(IngredientChipCollectionCell.self,
+                            forCellWithReuseIdentifier: "IngredientChipCollectionCell")
         return collection
     }()
     

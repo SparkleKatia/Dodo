@@ -62,7 +62,7 @@ extension CartScreenViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeuCell(indexPath) as AdressCell
-            // TODO: Is there any workarond for this hack with separator?
+            // TODO: Is there any workarond for this hack with separator? -> It must be a separate view
            cell.separatorInset = UIEdgeInsets(top: 0,
                                               left: .greatestFiniteMagnitude,
                                               bottom: 0,

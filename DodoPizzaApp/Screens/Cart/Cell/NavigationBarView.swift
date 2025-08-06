@@ -11,10 +11,6 @@ import UIKit
 // MARK: - NavigationBarView
 
 final class NavigationBarView: UIView {
-
-    // MARK: - Static
-    
-    static let reuseID = "NavigationHeader"
     
     // MARK: - Public
     

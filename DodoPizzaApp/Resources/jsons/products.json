@@ -1,0 +1,162 @@
+//
+//  products.swift
+//  DodoPizzaApp
+//
+//  Created by Kateryna on 06/08/2025.
+//
+
+[
+  {
+    "id": "hawaiian",
+    "name": "Hawaiian",
+    "detail": "Dough, Mozzarella cheese, Ham, Pineapple chunks, Tomato sauce",
+    "price": 590.22,
+    "image": "hawaii",
+    "type": "pizza"
+  },
+  {
+    "id": "margherita",
+    "name": "Margherita",
+    "detail": "Dough, Mozzarella cheese, Tomato sauce, Fresh tomatoes, Fresh basil, Olive oil",
+    "price": 650.99,
+    "image": "margarita",
+    "type": "pizza"
+  },
+  {
+    "id": "pepperoni",
+    "name": "Pepperoni",
+    "detail": "Dough, Mozzarella cheese, Pepperoni sausage, Bell pepper, Tomato sauce, Red onion, Oregano",
+    "price": 710.99,
+    "image": "pepperoni",
+    "type": "pizza"
+  },
+  {
+    "id": "cheesy",
+    "name": "Cheesy",
+    "detail": "Dough, Mozzarella cheese, Cheddar cheese, Cream cheese, Black pepper, Garlic butter",
+    "price": 710.99,
+    "image": "cheesy",
+    "type": "pizza"
+  },
+  {
+    "id": "dodo",
+    "name": "Dodo",
+    "detail": "Dough, Mozzarella cheese, Tomatoes, Red onion, Grilled chicken, BBQ sauce",
+    "price": 710.00,
+    "image": "dodo",
+    "type": "pizza"
+  },
+
+  {
+    "id": "sandwichChicken",
+    "name": "Chicken Sandwich",
+    "detail": "Toasted ciabatta, Grilled chicken breast, Lettuce, Tomato, Pickles, Garlic mayo",
+    "price": 390.50,
+    "image": "sandwich_chicken",
+    "type": "snacks"
+  },
+  {
+    "id": "sandwichVeg",
+    "name": "Veggie Sandwich",
+    "detail": "Whole-grain bun, Roasted bell peppers, Grilled zucchini, Feta cheese, Pesto",
+    "price": 360.00,
+    "image": "sandwich_veg",
+    "type": "snacks"
+  },
+  {
+    "id": "friesBaked",
+    "name": "Baked French Fries",
+    "detail": "Skin-on potatoes, Olive oil, Sea salt, Paprika",
+    "price": 180.00,
+    "image": "fries_baked",
+    "type": "snacks"
+  },
+  {
+    "id": "wings6",
+    "name": "Chicken Wings (6 pcs)",
+    "detail": "Crispy chicken wings, Choice of BBQ or Buffalo sauce",
+    "price": 320.99,
+    "image": "wings6",
+    "type": "snacks"
+  },
+  {
+    "id": "chickenSalad",
+    "name": "Chicken Salad",
+    "detail": "Romaine lettuce, Grilled chicken strips, Cherry tomatoes, Parmesan, Caesar dressing",
+    "price": 420.75,
+    "image": "salad_chicken",
+    "type": "snacks"
+  },
+  {
+    "id": "rollsCurrantRaspberry",
+    "name": "Currant & Raspberry Rolls",
+    "detail": "Sweet yeast dough, Black-currant jam, Raspberry glaze",
+    "price": 250.00,
+    "image": "rolls_currant_raspberry",
+    "type": "desserts"
+  },
+  {
+    "id": "lavaCake",
+    "name": "Chocolate Lava Cake",
+    "detail": "Warm chocolate cake, Molten centre, Vanilla icing sugar",
+    "price": 310.50,
+    "image": "lava_cake",
+    "type": "desserts"
+  },
+  {
+    "id": "lemonadeRaspberryLemon",
+    "name": "Raspberry-Lemon Lemonade (0.4 L)",
+    "detail": "Fresh lemon juice, Raspberry purée, Sparkling water, Mint",
+    "price": 120.00,
+    "image": "lemonade_rasp_lemon",
+    "type": "drinks"
+  },
+  {
+    "id": "lemonadeOrangeLemon",
+    "name": "Orange-Lemon Lemonade (0.4 L)",
+    "detail": "Orange juice, Lemon juice, Sparkling water, Orange slices",
+    "price": 120.00,
+    "image": "lemonade_orange_lemon",
+    "type": "drinks"
+  },
+  {
+    "id": "cocaCola",
+    "name": "Coca-Cola® (0.5 L)",
+    "detail": "Chilled bottle, Classic flavour",
+    "price": 90.00,
+    "image": "coca_cola",
+    "type": "drinks"
+  },
+  {
+    "id": "sauceTrio",
+    "name": "3-Sauce Combo",
+    "detail": "Garlic sauce, BBQ sauce, Ketchup (30 ml each)",
+    "price": 70.00,
+    "image": "sauce_trio",
+    "type": "snacks"
+  },
+  {
+    "id": "garlicSauce",
+    "name": "Garlic Sauce (30 ml)",
+    "detail": "Creamy yoghurt base, Fresh garlic, Herbs",
+    "price": 25.00,
+    "image": "sauce_garlic",
+    "type": "snacks"
+  },
+  {
+    "id": "bbqSauce",
+    "name": "BBQ Sauce (30 ml)",
+    "detail": "Smoky tomato base, Brown sugar, Spices",
+    "price": 25.00,
+    "image": "sauce_bbq",
+    "type": "snacks"
+  },
+  {
+    "id": "ketchup",
+    "name": "Ketchup (30 ml)",
+    "detail": "Tomato ketchup, Classic recipe",
+    "price": 20.00,
+    "image": "sauce_ketchup",
+    "type": "snacks"
+  }
+]

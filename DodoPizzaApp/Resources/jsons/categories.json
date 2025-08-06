@@ -1,0 +1,7 @@
+
+[
+  {"id":"pizza","name":"Pizza"},
+  {"id":"snacks","name":"Snacks"},
+  {"id":"drinks","name":"Drinks"},
+  {"id":"desserts","name":"Desserts"},
+]

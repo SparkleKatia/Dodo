@@ -109,15 +109,20 @@ extension DetailProductViewController: UITableViewDataSource {
             cell.removeSeparator()
             // TODO: add custom view as separator
             return cell
+            
         case .productDescription:
             let cell = tableView.dequeuCell(indexPath) as DescriptionCell
             cell.update(product: product)
             cell.removeSeparator()
             return cell
+            
         case .ingridientChip:
             let cell = tableView.dequeuCell(indexPath) as IngredientChipContainer
             cell.removeSeparator()
-            cell.update(ingredients)
+            let filteredIngredients = ingredients.filter { ingredient in
+                ingredient.id == product.id
+            }
+            cell.update(filteredIngredients)
             cell.onRemove = { [weak self] ing in
                 guard let self else { return }
                 if let idx = ingredients.firstIndex(of: ing) {
@@ -131,10 +136,14 @@ extension DetailProductViewController: UITableViewDataSource {
             let cell = tableView.dequeuCell(indexPath) as SizeDoughSelectorCell
             cell.removeSeparator()
             return cell
+            
         case .ingredientContainer:
             let cell = tableView.dequeuCell(indexPath) as IngredientCollectionContainerCell
             cell.removeSeparator()
-            cell.update(ingredients)
+            let filteredIngredients = ingredients.filter { ingredient in
+                ingredient.id == product.id
+            }
+            cell.update(filteredIngredients)
             return cell
         }
     }
@@ -150,7 +159,7 @@ extension DetailProductViewController: UITableViewDelegate { }
 extension DetailProductViewController {
     
     private func fetchIngredients() {
-        ingredientService.fetchIngredients(for: product.id) { [weak self] ingredients in
+        ingredientService.fetchIngredients() { [weak self] ingredients in
             guard let self else { return }
             self.ingredients = ingredients
             self.tableView.reloadData()
@@ -176,8 +185,8 @@ extension DetailProductViewController {
                                                  constant: 16),
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                              constant: 16),
-            closeButton.widthAnchor.constraint(equalToConstant: 44),
-            closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor),
+//            closeButton.widthAnchor.constraint(equalToConstant: 44),
+//            closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: orderButtonView.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

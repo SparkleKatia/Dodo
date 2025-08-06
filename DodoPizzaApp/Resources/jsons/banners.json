@@ -1,0 +1,29 @@
+//
+//  banners.swift
+//  DodoPizzaApp
+//
+//  Created by Kateryna on 06/08/2025.
+//
+
+[
+  {
+    "id": "promo-pizza-001",
+    "name": "2-for-1 Pepperoni Madness",
+    "image": "banner1"
+  },
+  {
+    "id": "summer-cool-002",
+    "name": "Free Lemonade with Any Large",
+    "image": "banner2"
+  },
+  {
+    "id": "kids-combo-003",
+    "name": "Kids Combo – 30 % Off",
+    "image": "banner3"
+  },
+    {
+    "id": "kids-combo-003",
+    "name": "Kids Combo – 30 % Off",
+    "image": "banner4"
+  }
+]
