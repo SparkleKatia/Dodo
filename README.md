@@ -1,8 +1,5 @@
 # 🍕 Dodo Pizza Clone
-
-> **Unofficial, educational replica** of the Dodo Pizza iOS application — built 100 % with **UIKit** and fully programmatic `UIView` layouts (no Storyboards, no XIBs). Powered by a lightweight mock backend with **Macoon**.
-
----
+**Educational replica** of the Dodo Pizza iOS application — built 100 % with **UIKit** and fully programmatic `UIView` layouts (no Storyboards, no XIBs). Powered by a lightweight mock backend with **Macoon**.
 
 ## 📸 Screens in v0.1.0
 
@@ -12,7 +9,6 @@
 | **Product Detail** | Full product profile: gallery, description, size picker, “Add to cart” CTA |
 | **Banner Detail** | Expands promo banner info and links to current offers |
 
----
 
 ## 🔧 Tech Stack
 
