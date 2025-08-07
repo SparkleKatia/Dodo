@@ -11,6 +11,10 @@ import UIKit
 
 final class IngredientCollectionContainerCell: UITableViewCell {
     
+    // MARK: - Public
+    
+    private var collectionHeightConstraint: NSLayoutConstraint!
+    
     // MARK: - Static
     
     static let reuseID = "IngridientCollectionContainerCell"
@@ -121,9 +125,13 @@ extension IngredientCollectionContainerCell {
     }
 
     private func setupConstraint() {
+        collectionHeightConstraint =
+                    ingredientsCollection.heightAnchor.constraint(equalToConstant: 0)
+                collectionHeightConstraint.isActive = true
+        
         NSLayoutConstraint.activate([
             ingredientsCollection.topAnchor.constraint(equalTo: contentView.topAnchor),
-            ingredientsCollection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            ingredientsCollection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             ingredientsCollection.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             ingredientsCollection.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
@@ -136,13 +144,13 @@ extension IngredientCollectionContainerCell {
     
     func update(_ ingredients: [Ingredient]) {
         self.ingredients = ingredients
-        print(ingredients)
         ingredientsCollection.reloadData()
-//        let count = Double(ingredients.count)
-//        let row = (count / 3).rounded(.up)
-//        let cellHeight = 160.0
-//        let offset = 8.0
-//        let collectionHeight = row * cellHeight + offset * (row + 1)
-       ingredientsCollection.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        ingredientsCollection.layoutIfNeeded()
+        let count = Double(ingredients.count)
+        let row = (count / 3).rounded(.up)
+        let cellHeight = 160.0
+        let offset = 8.0
+        let collectionHeight = row * cellHeight + offset * (row + 1)
+        collectionHeightConstraint.constant = collectionHeight
     }
 }

@@ -42,23 +42,24 @@ final class SizeDoughSelectorCell: UITableViewCell {
         let control = UISegmentedControl.init(items: ["20 sm", "30 sm", "35 sm"])
         control.translatesAutoresizingMaskIntoConstraints = false
         control.selectedSegmentIndex = 0
+        control.backgroundColor = .systemGray6
         //control.selectedSegmentTintColor = .orange
         
-        let grayBackground = imageWithColor(UIColor.systemGray6)
-        let whiteColor = imageWithColor(UIColor.white)
-//
-        control.setBackgroundImage(grayBackground, for: .normal, barMetrics: .default)
-        //control.setBackgroundImage(whiteColor, for: .selected, barMetrics: .default)
-//        control.setDividerImage(grayBackground, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-//
-//        if #available(iOS 15.0, *) {
-//            let appearance = UISegmentedControl.appearance()
-//            appearance.selectedSegmentTintColor = UIColor(white: 0.9, alpha: 1)
-//            appearance.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-//            appearance.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
-//            //appearance.selectedSegmentTintColor
-//        }
-        control.selectedSegmentTintColor = .orange
+//        let grayBackground = imageWithColor(UIColor.systemGray6)
+//        let whiteColor = imageWithColor(UIColor.white)
+////
+//        control.setBackgroundImage(grayBackground, for: .normal, barMetrics: .default)
+//        //control.setBackgroundImage(whiteColor, for: .selected, barMetrics: .default)
+////        control.setDividerImage(grayBackground, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+////
+////        if #available(iOS 15.0, *) {
+////            let appearance = UISegmentedControl.appearance()
+////            appearance.selectedSegmentTintColor = UIColor(white: 0.9, alpha: 1)
+////            appearance.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+////            appearance.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
+////            //appearance.selectedSegmentTintColor
+////        }
+//        control.selectedSegmentTintColor = .orange
         return control
     }()
     private lazy var doughControl: UISegmentedControl = {
@@ -113,7 +114,7 @@ extension SizeDoughSelectorCell {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             verticalStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            verticalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            verticalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             verticalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             

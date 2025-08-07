@@ -292,7 +292,7 @@ extension MenuScreenViewController {
 extension MenuScreenViewController {
     
     private func setupViews() {
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(tableView)
         view.addSubview(cartButton)
         view.addSubview(profileImageView)

@@ -44,7 +44,7 @@ final class DescriptionCell: UITableViewCell {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             verticalStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            verticalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            verticalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             verticalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             verticalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
         ])

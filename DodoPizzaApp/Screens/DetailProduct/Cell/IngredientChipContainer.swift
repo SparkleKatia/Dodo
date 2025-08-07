@@ -17,7 +17,8 @@ final class IngredientChipContainer: UITableViewCell {
     
     // MARK: - Private
     
-    var ingredients: [Ingredient] = []
+    private var ingredients: [Ingredient] = []
+    private var collectionHeightConstraint: NSLayoutConstraint!
     
     // MARK: - Public
     
@@ -88,6 +89,9 @@ extension IngredientChipContainer {
     func update(_ ingredients: [Ingredient]) {
         self.ingredients = ingredients
         ingridientsChipcollection.reloadData()
+        ingridientsChipcollection.layoutIfNeeded()
+        collectionHeightConstraint.constant = ingridientsChipcollection.collectionViewLayout
+                                         .collectionViewContentSize.height
     }
 }
 
@@ -100,12 +104,18 @@ extension IngredientChipContainer {
     }
     
     private func setupConstrains() {
+        collectionHeightConstraint = ingridientsChipcollection.heightAnchor.constraint(equalToConstant: 0)
+        collectionHeightConstraint.isActive = true
+        ingridientsChipcollection.bottomAnchor
+                   .constraint(equalTo: contentView.bottomAnchor, constant: -8)
+                   .isActive = true
+        
         NSLayoutConstraint.activate([
             ingridientsChipcollection.topAnchor.constraint(equalTo: contentView.topAnchor),
-            ingridientsChipcollection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            ingridientsChipcollection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             ingridientsChipcollection.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             ingridientsChipcollection.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            ingridientsChipcollection.heightAnchor.constraint(equalToConstant: 100)
+            
         ])
     }
 }
